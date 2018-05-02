@@ -1,8 +1,14 @@
 package com.qingmei2
 
-println "开始执行自动阅读"
+println "已选中的Android设备："
+
+println "————————————————————————————————————"
 
 println "adb devices".execute().text
+
+println "————————————————————————————————————"
+
+println "开始执行自动阅读"
 
 //因为系统原因，很多情况下该命令实际的效果为对界面元素的长按，因此抛弃该命令
 //println 'input swipe 540 1300 540 500 100 '
@@ -17,8 +23,7 @@ int duration = 0
  *  21 -->  "KEYCODE_DPAD_LEFT"
  *  22 -->  "KEYCODE_DPAD_RIGHT"
  *  23 -->  "KEYCODE_DPAD_CENTER"
- *  */
-
+ */
 while (stillScrolling) {
     Thread.sleep(actionInterval)
     println "adb shell input keyevent 20".execute().text
@@ -28,5 +33,6 @@ while (stillScrolling) {
     println 'Action page down...'
 }
 
-println 'The essay\'s reading end.'
+// 考虑采用三方图片识别技术，通过对屏幕的识别，判断是否达到文章底部，并点击「完成阅读」操作
+println "The essay's reading was finished."
 
