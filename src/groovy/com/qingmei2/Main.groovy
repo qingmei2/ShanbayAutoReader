@@ -4,7 +4,7 @@ import javax.imageio.ImageIO
 
 import static java.lang.System.currentTimeMillis
 
-final int actionInterval = 500        //两次下翻操作的时间间隔，单位毫秒
+final int actionInterval = 250        //两次下翻操作的时间间隔，单位毫秒
 final float threshold = 0.95          //图片分析相似度的阈值，当相似度大于阈值时，视为图片相同
 
 println "已选中的Android设备："
@@ -101,7 +101,11 @@ def task_compareSimilar(String pic1, String pic2) {
  * 结束阅读，自动点击屏幕下方按钮「完成阅读」或者「读后感」
  */
 def task_finishReading() {
-    println("结束阅读")
+    println "——————————————————————————————————————————————"
+    println "执行结束阅读操作..."
+    println "adb shell input tap 540 1730".execute().text         //模拟点击按钮完成阅读，这里以1920*1080的屏幕分辨率为准
+    println "执行结束阅读操作完毕."
+    println "——————————————————————————————————————————————"
 }
 
 /**
