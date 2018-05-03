@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Class-Path: ant-1.9.4.jar ant-antlr-1.9.4.jar ant-junit-1.9.4.jar ant-
+ launcher-1.9.4.jar bsf-2.4.0.jar commons-cli-1.2.jar commons-logging-
+ 1.2.jar gpars-1.2.1.jar groovy-2.4.15.jar groovy-ant-2.4.15.jar groov
+ y-bsf-2.4.15.jar groovy-console-2.4.15.jar groovy-docgenerator-2.4.15
+ .jar groovy-groovydoc-2.4.15.jar groovy-groovysh-2.4.15.jar groovy-jm
+ x-2.4.15.jar groovy-json-2.4.15.jar groovy-jsr223-2.4.15.jar groovy-n
+ io-2.4.15.jar groovy-servlet-2.4.15.jar groovy-sql-2.4.15.jar groovy-
+ swing-2.4.15.jar groovy-templates-2.4.15.jar groovy-test-2.4.15.jar g
+ roovy-testng-2.4.15.jar groovy-xml-2.4.15.jar hamcrest-core-1.3.jar i
+ vy-2.4.0.jar jansi-1.11.jar jcommander-1.47.jar jline-2.12.jar jsp-ap
+ i-2.0.jar jsr166y-1.7.0.jar junit-4.12.jar multiverse-core-0.7.0.jar 
+ qdox-1.12.1.jar servlet-api-2.4.jar testng-6.8.13.jar xmlpull-1.1.3.1
+ .jar xstream-1.4.10.jar
+
