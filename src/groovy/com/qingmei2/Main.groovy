@@ -1,31 +1,24 @@
 package com.qingmei2
 
 import javax.imageio.ImageIO
+import javax.xml.crypto.Data
 
 import static java.lang.System.currentTimeMillis
 
-final int actionInterval = 250        //两次下翻操作的时间间隔，单位毫秒
-final float threshold = 0.95          //图片分析相似度的阈值，当相似度大于阈值时，视为图片相同
-
-println "已选中的Android设备："
-
-println "————————————————————————————————————"
-
-println "adb devices".execute().text
-
-println "————————————————————————————————————"
-
-println "开始执行自动阅读"
-
-//因为系统原因，很多情况下该命令实际的效果为对界面元素的长按，因此抛弃该命令
-//println 'input swipe 540 1300 540 500 100 '
-
-boolean clearScreenShotCacheWhenFinishTask = true       //可选项，当脚本执行结束时，是否自动清除截图缓存
-def ending = false              //是否已结束
-def duration = 0                //本次操作已执行时间
+def actionInterval = 100                                //两次下翻操作的时间间隔，单位ms,因为IO操作也会造成延时，因此暂时设置为100
+def threshold = 0.95                                    //图片分析相似度的阈值，当相似度大于阈值时，视为图片相同
+def clearScreenShotCacheWhenFinishTask = true           //Optional，是否自动清除截图缓存
+def ending = false                                      //是否已结束
+def duration = 0                                        //本次操作已执行时间
 String rootPath = System.getProperty("user.dir") + "/screenshots/"
 String lastScreenShot = null
 String newScreenShot = null
+
+println "已选中的Android设备："
+println "————————————————————————————————————"
+println "adb devices".execute().text
+println "————————————————————————————————————"
+println "开始执行自动阅读"
 
 /**
  *  19 -->  "KEYCODE_DPAD_UP"
@@ -39,11 +32,10 @@ while (!ending) {
         new File(rootPath).mkdirs()
     }
 
+    def dateBefore = new Date()
+
     newScreenShot = task_screenShot(rootPath)
     task_downPage(actionInterval)
-    duration += actionInterval
-
-    println "本次阅读已持续时间：$duration ms"
 
     if (lastScreenShot != null) {
         def similar = task_compareSimilar(lastScreenShot, newScreenShot)
@@ -57,6 +49,12 @@ while (!ending) {
         }
     }
     lastScreenShot = newScreenShot
+    
+    def dateAfter = new Date()
+    def ioCostTime = dateAfter.getTime() - dateBefore.getTime()
+
+    duration += (actionInterval + ioCostTime)
+    println "本次阅读已持续时间：$duration ms"
 }
 
 // 考虑采用三方图片识别技术，通过对屏幕的识别，判断是否达到文章底部，并点击「完成阅读」操作
